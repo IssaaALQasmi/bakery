@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معجنات وفطائر - المنتجات</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <!-- في قسم الهيدر -->
+            <div class="logo">
+                <img src="images/logo.jpeg" alt="شعار معجنات وفطائر">
+                <h1>معجنات وفطائر</h1>
+            </div>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="products.html" class="active">المنتجات</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+            </ul>
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒 <span class="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="products-section">
+            <h2>منتجاتنا</h2>
+            <div class="products-grid">
+                <!-- المنتج 1 -->
+                <div class="product-card" data-id="1" data-name="فطيرة نقانق" data-price="0.100">
+                    <img src="images/1.jpeg" alt="فطيرة نقانق">
+                    <h3>فطيرة نقانق</h3>
+                    <p>100 بيسة</p>
+                    <button class="add-to-cart" onclick="addToCart(this.parentElement)">إضافة للسلة</button>
+                </div>
+                
+                <!-- المنتج 2 -->
+                <div class="product-card" data-id="2" data-name="فطيرة الزعتر بالجبن" data-price="0.100">
+                    <img src="images/2.jpeg" alt="فطيرة الزعتر بالجبن">
+                    <h3>فطيرة الزعتر بالجبن</h3>
+                    <p>100 بيسة</p>
+                    <button class="add-to-cart" onclick="addToCart(this.parentElement)">إضافة للسلة</button>
+                </div>
+                
+                <!-- المنتج 3 -->
+                <div class="product-card" data-id="3" data-name="ميني بيتزا" data-price="1.000">
+                    <img src="images/3.jpeg" alt="ميني بيتزا">
+                    <h3>ميني بيتزا</h3>
+                    <p>1 ريال</p>
+                    <button class="add-to-cart" onclick="addToCart(this.parentElement)">إضافة للسلة</button>
+                </div>
+                
+                <!-- المنتج 4 -->
+                <div class="product-card" data-id="4" data-name="بوكس السعادة" data-price="0.800">
+                    <img src="images/4.jpeg" alt="بوكس السعادة">
+                    <h3>بوكس السعادة</h3>
+                    <p>800 بيسة</p>
+                    <button class="add-to-cart" onclick="addToCart(this.parentElement)">إضافة للسلة</button>
+                </div>
+                
+                <!-- المنتج 5 -->
+                <div class="product-card" data-id="5" data-name="فطائر الجبن" data-price="0.500">
+                    <img src="images/5.jpeg" alt="فطائر الجبن">
+                    <h3>فطائر الجبن</h3>
+                    <p>500 بيسة</p>
+                    <button class="add-to-cart" onclick="addToCart(this.parentElement)">إضافة للسلة</button>
+                </div>
+                
+                <!-- يمكنك إضافة منتج سادس هنا إذا كنت بحاجة إليه -->
+                <!--
+                <div class="product-card">
+                    <img src="images/6.jpeg" alt="اسم المنتج">
+                    <h3>اسم المنتج</h3>
+                    <p>السعر</p>
+                </div>
+                -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <h2>سلة التسوق</h2>
+            <div id="cartItems"></div>
+            <div class="cart-total">
+                <strong>المجموع:</strong> <span id="cartTotal">0</span> ريال
+            </div>
+            <button onclick="showCheckoutForm()" class="checkout-btn">إتمام الطلب</button>
+            <button onclick="toggleCart()" class="close-btn">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- Checkout Form Modal -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <h2>إتمام الطلب</h2>
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label for="fullName">الاسم الكامل</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">رقم الهاتف</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryTime">وقت التسليم المطلوب</label>
+                    <input type="datetime-local" id="deliveryTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryMethod">طريقة الاستلام</label>
+                    <select id="deliveryMethod" required>
+                        <option value="delivery">توصيل</option>
+                        <option value="pickup">استلام من المحل</option>
+                    </select>
+                </div>
+                <button type="submit" class="checkout-btn">إرسال الطلب عبر الواتساب</button>
+                <button type="button" onclick="hideCheckoutForm()" class="close-btn">رجوع</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>جميع الحقوق محفوظة لمخبز معجنات وفطائر © <span id="year"></span></p>
+            <div class="social">
+                <a href="https://www.instagram.com/m_bakery01" target="_blank">إنستقرام</a>
+                <a href="tel:+96871718944">+968 7171 8944</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
